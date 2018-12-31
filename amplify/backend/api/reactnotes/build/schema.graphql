@@ -1,0 +1,116 @@
+type Note {
+  id: ID!
+  name: String!
+  description: String
+  status: String!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelNoteConnection {
+  items: [Note]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelNoteFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  description: ModelStringFilterInput
+  status: ModelStringFilterInput
+  and: [ModelNoteFilterInput]
+  or: [ModelNoteFilterInput]
+  not: ModelNoteFilterInput
+}
+
+type Query {
+  getNote(id: ID!): Note
+  listNotes(filter: ModelNoteFilterInput, limit: Int, nextToken: String): ModelNoteConnection
+}
+
+input CreateNoteInput {
+  id: ID
+  name: String!
+  description: String
+  status: String!
+}
+
+input UpdateNoteInput {
+  id: ID!
+  name: String
+  description: String
+  status: String
+}
+
+input DeleteNoteInput {
+  id: ID
+}
+
+type Mutation {
+  createNote(input: CreateNoteInput!): Note
+  updateNote(input: UpdateNoteInput!): Note
+  deleteNote(input: DeleteNoteInput!): Note
+}
+
+type Subscription {
+  onCreateNote: Note @aws_subscribe(mutations: ["createNote"])
+  onUpdateNote: Note @aws_subscribe(mutations: ["updateNote"])
+  onDeleteNote: Note @aws_subscribe(mutations: ["deleteNote"])
+}

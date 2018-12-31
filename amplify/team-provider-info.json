@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "react-notes-20181228114606-authRole",
+            "UnauthRoleArn": "arn:aws:iam::557458351015:role/react-notes-20181228114606-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::557458351015:role/react-notes-20181228114606-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "react-notes-20181228114606-deployment",
+            "UnauthRoleName": "react-notes-20181228114606-unauthRole",
+            "StackName": "react-notes-20181228114606",
+            "StackId": "arn:aws:cloudformation:eu-central-1:557458351015:stack/react-notes-20181228114606/372121d0-0ad9-11e9-a73f-0aee446e3232"
+        },
+        "categories": {
+            "auth": {
+                "reactnotescognitoauth": {}
+            }
+        }
+    }
+}
