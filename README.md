@@ -60,8 +60,7 @@ Amplify Framework provides npm packages for installation. aws-amplify is the cor
 Run the following commands to install required packages:
 
 ```sh
-$ npm install aws-amplify
-$ npm install aws-amplify-angular
+$ npm install aws-amplify aws-amplify-react
 ```
 
 You have installed the required Amplify packages in this step. In Part 2, you will use those packages to cloud-enable your React app.
