@@ -389,6 +389,7 @@ async componentDidMount() {
     console.log('error fetching notes...', err)
   }
 }
+
 createNote = async note => {
   const notes = [note, ...this.state.notes]
   const newNotes = this.state.notes
@@ -400,6 +401,7 @@ createNote = async note => {
     console.log('error creating note..', err)
   }
 }
+
 updateNote = async note => {
   const updatedNote = {
     ...note,
@@ -416,6 +418,7 @@ updateNote = async note => {
     console.log('error updating note...', err)
   }
 }
+
 deleteNote = async note => {
   const input = { id: note.id }
   const notes = this.state.notes.filter(n => n.id !== note.id)
@@ -426,10 +429,62 @@ deleteNote = async note => {
     console.log('error deleting note...', err)
   }
 }
+
 updateFilter = filter => this.setState({ filter })
 ```
 
 - `componentDidMount` - Here, we call the API & fetch all of the notes. When the data is returned, we update the notes array to the data that was returned from the API.
 
 - `createNote` - This method calls the API & creates a new note. We also provide an optimistic response as to update the UI as soon as the user creates the note without waiting for the response from the API.
+
+- `updateNote` - This method updates the `status` of the note to be either __completed__ or __new__. We also provide an optimistic response.
+
+- `deleteNote` - This method deletes the note from the API. We also provide an optimistic response.
+
+- `updateFilter` - This method changes the filter type that we are currently viewing.
+
+Next, we'll update the render method to the following:
+
+```js
+render() {
+  let { notes, filter } = this.state
+  if (filter === 'completed') {
+    notes = notes.filter(n => n.status === 'completed')
+  }
+  if (filter === 'new') {
+    notes = notes.filter(n => n.status === 'new')
+  }
+  return (
+    <div {...css(styles.container)}>
+      <p {...css(styles.title)}>Notes</p>
+      <Form
+        createNote={this.createNote}
+      />
+      <Notes
+        notes={notes}
+        deleteNote={this.deleteNote}
+        updateNote={this.updateNote}
+      />
+      <div {...css(styles.bottomMenu)}>
+        <p
+          onClick={() => this.updateFilter('none')}
+          {...css([ styles.menuItem, getStyle('none', filter)])}
+        >All</p>
+        <p
+          onClick={() => this.updateFilter('completed')}
+          {...css([styles.menuItem, getStyle('completed', filter)])}
+        >Completed</p>
+        <p
+          onClick={() => this.updateFilter('new')}
+          {...css([styles.menuItem, getStyle('new', filter)])}
+        >Pending</p>
+      </div>
+    </div>
+  );
+}
+```
+
+- We first destructure the `notes` array & the `filter` value from the state.
+- Next, we apply the filter on the notes array if there is a filter that matches either `completed` or `new`.
+- We return the __Form__ & __Notes__ components as well as some UI to apply the filter.
 
