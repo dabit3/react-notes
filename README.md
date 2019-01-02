@@ -428,3 +428,8 @@ deleteNote = async note => {
 }
 updateFilter = filter => this.setState({ filter })
 ```
+
+- `componentDidMount` - Here, we call the API & fetch all of the notes. When the data is returned, we update the notes array to the data that was returned from the API.
+
+- `createNote` - This method calls the API & creates a new note. We also provide an optimistic response as to update the UI as soon as the user creates the note without waiting for the response from the API.
+
