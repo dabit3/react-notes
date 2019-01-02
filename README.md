@@ -719,3 +719,17 @@ export default Form
 
 This component renders a basic form. In the component we listen for an __enter__ keyPress event. If the key is the __Enter__ key, we call this.props.createNote, passing in the value in the text input.
 
+### Testing it out
+
+You have just implemented GraphQL queries and mutations in your CRUD functions. Now, you can test your app and verify that the app data is persisted using your GraphQL backend!
+
+```sh
+npm start
+```
+
+Inspecting a GraphQL Mutation
+
+Let’s see what is happening under the hood. Run your app, and add a new item while you monitor the network traffic in your browser’s developer tools. Here is what you will see for a mutation HTTP request: 
+
+![](preview.png)
+
