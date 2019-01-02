@@ -320,7 +320,7 @@ When you check the `src/graphql` folder, you will see that the CLI has generated
 
 ## Running Queries/Mutations
 
-To run a query or mutation, you import it in your app, and use Amplify API category to perform the operation:
+To run a query or mutation, you import it in your app, and use Amplify `API` category to perform the operation:
 
 ```js
 import Amplify, { API, graphqlOperation } from "aws-amplify";
