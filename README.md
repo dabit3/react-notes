@@ -330,7 +330,7 @@ const allNotes = await API.graphql(graphqlOperation(listNotes));
 console.log(allNotes);
 ```
 
-### Connecting to the GraphQL Backend
+## Connecting to the GraphQL Backend & Building Your UI
 
 Currently, your GraphQL API and related backend resources (an Amazon DynamoDB table that stores the data) have been deployed to the cloud. Now, you can add CRUD functionality to your app by integrating the GraphQL backend & writing the UI.
 
