@@ -175,7 +175,7 @@ User authentication will be the next cloud feature you will enable.
 If you have been following the tutorial from the start and enabled Analytics in the previous step, auth is already enabled for your app (analytics needs secure credentials for reporting metrics). In this case, you just need to run update auth command to create a User Pool that will store your registered users:
 
 ```sh
-amplify update auth
+$ amplify update auth
 
 > Do you want to use the default authentication and security configuration? Y
 
