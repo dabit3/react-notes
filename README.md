@@ -733,3 +733,32 @@ Let’s see what is happening under the hood. Run your app, and add a new item w
 
 ![](preview.png)
 
+When you check the request header, you will notice that the Request Payload has the todo item data in JSON format.
+
+__Congratulations! You now have a cloud-powered React app!__
+
+You’ve persisted your app’s data using AWS AppSync and Amazon DynamoDB.
+
+### What’s next?
+
+You have completed this tutorial. However, if you like to improve your app even further, here are some ideas you can consider.
+
+#### Deploy your app using the Amplify Console
+
+The AWS Amplify Console is a continuous deployment and hosting service for mobile web applications. The AWS Amplify Console makes it easy for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of simultaneously updating the frontend and backend of your applications. To learn more about the Amplify console, check out [the documentation](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html).
+
+#### Work with User Data
+
+You may have noticed that our Todo GraphQL schema doesn’t have a user id field. It means that the todo list is not personalized for your app users. To fix that, you can retrieve the user id after login, and use it when you work with data. When a user is logged in, you may also like to use the user profile information in your app, like displaying the username or profile picture. Learn more about User Attributes here.
+
+#### Use GraphQL Subscriptions
+
+In addition to queries and mutations, you can use GraphQL subscriptions with AWS AppSync and enable real-time data in your app. Think of a user experience which you share your todo list with your friends and all of you create and edit items at the same time. Learn more about subscriptions here.
+
+#### Add Search
+
+You can add search functionality to your app. This will be very easy by adding a @searchable directive in your GraphQL schema. Learn more about here.
+
+#### Add Images
+
+You can add an image attachment feature for todo items. This can be simply done by enabling complex object types in your GraphQL schema. Learn more about here.
