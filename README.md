@@ -136,7 +136,7 @@ When you deploy your backend with Amplify CLI, here is what happens under the ho
 2. The CLI updates your ‘/amplify’ folder, which has all the relevant information about your backend on AWS
 3. The CLI updates the configuration file aws-exports.js with the latest resource credentials
 
-As a front-end developer, you need to import the auto generated aws-exports.js configuration file in your Ionic app, and configure your app with Amplify.configure() method call.
+As a front-end developer, you need to import the auto generated aws-exports.js configuration file in your React app, and configure your app with Amplify.configure() method call.
 
 So, to enable analytics to your application, run the following commands:
 
@@ -162,7 +162,9 @@ Amplify.configure(aws_exports);
 
 ### Monitoring App Analytics
 
-Refresh your application a couple of times, and then you will start receiving usage metrics in Amazon Pinpoint console.
+Refresh your application a couple of times, and then you will automatically start receiving usage metrics in the Amazon Pinpoint console.
+
+To view the Amazon Pinpoint console, visit [https://console.aws.amazon.com/pinpoint/home/](https://console.aws.amazon.com/pinpoint/home/) & select the region where you created the service.
 
 Since your application doesn’t have much functionality at the moment, only ‘session start’ events are displayed in Pinpoint Console. As you add more cloud features to your app - like authentication - Amplify will automatically report related analytics events to Amazon Pinpoint. So, you will know how your users are interacting with your app.
 
@@ -177,7 +179,48 @@ If you have been following the tutorial from the start and enabled Analytics in 
 ```sh
 $ amplify update auth
 
-> Do you want to use the default authentication and security configuration? Y
+> Do you want to use the default authentication and security configuration? Yes, use the default configuration.
 
 $ amplify push
 ```
+
+If you have not enabled Analytics earlier, you will be using auth features for the first time. Run the following command:
+
+```sh
+$ amplify add auth
+$ amplify push
+```
+
+When prompted by the CLI, chose ‘default configuration’:
+
+```sh
+Do you want to use the default authentication and security configuration?
+❯ Yes, use the default configuration. 
+```
+
+> AWS Amplify’s Authentication category works with Amazon Cognito, a cloud-based authentication and federation service that enables you to manage user access to your applications.
+
+## Enabling the UI Components for Auth
+
+One of the most important benefits of Amplify Framework is that you don’t need to implement standard app features - like user authentication - from scratch. Amplify provides UI components that you can integrate into your app with just a few lines of code.
+
+## Rendering the Auth UI
+
+Now, let’s put the auth UI components in our home page. We'll be using the `withAuthenticator` higher order component from the _aws-amplify-react_ library.
+
+The `withAuthenticator` component renders a pre-built sign-in and sign-up flow with full-fledged auth functionality like user registration, password reminders, and Multi-factor Authentication.
+
+Open src/App.js and import the component & replace the default export for the component:
+
+```js
+import { withAuthenticator } from 'aws-amplify-react'
+
+export default withAuthenticator(App, { includeGreetings: true })
+```
+
+### Test Your Auth Flow
+
+Now, refresh your app. Once your application loads, you will see login/signup controls.
+
+![](auth.jpg)
+
