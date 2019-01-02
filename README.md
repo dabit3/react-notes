@@ -348,3 +348,7 @@ In the `src` directory, create a `components` directory with three new component
 mkdir components
 touch components/Form.js components/Note.js components/Notes.js
 ```
+
+Next, we'll update App.js. App.js will hold most of the logic for creating, updating & deleting items in our API.
+
+![](notesapp.jpg)
