@@ -334,6 +334,8 @@ console.log(allNotes);
 
 Currently, your GraphQL API and related backend resources (an Amazon DynamoDB table that stores the data) have been deployed to the cloud. Now, you can add CRUD functionality to your app by integrating the GraphQL backend & writing the UI.
 
+![](notesapp.jpg)
+
 The first thing we'll need to do is install a couple of additional dependencies (Glamor for styling & React Icons for Icons):
 
 ```sh
@@ -351,4 +353,78 @@ touch components/Form.js components/Note.js components/Notes.js
 
 Next, we'll update App.js. App.js will hold most of the logic for creating, updating & deleting items in our API.
 
-![](notesapp.jpg)
+First, let's import everything we'll need for the component:
+
+```js
+// src/App.js
+
+import React, { Component } from 'react'
+import { API, graphqlOperation } from 'aws-amplify'
+import { withAuthenticator } from 'aws-amplify-react'
+import { css } from 'glamor'
+
+import Form from './components/Form'
+import Notes from './components/Notes'
+import { createNote, updateNote, deleteNote } from './graphql/mutations'
+import { listNotes } from './graphql/queries'
+```
+
+Next, in our class, we'll define the initial state:
+
+```js
+state = { notes: [], filter: 'none' }
+```
+
+- The `notes` array will hold the notes we will be fetching from the API.
+- The `filter` value will hold the current filter for the type notes that we are viewing (all notes, completed notes, pending notes).
+
+Next, we'll define the methods we'll be needing:
+
+```js
+async componentDidMount() {
+    try {
+      const { data: { listNotes: { items }}} = await API.graphql(graphqlOperation(listNotes))
+      this.setState({ notes: items })
+    } catch (err) {
+      console.log('error fetching notes...', err)
+    }
+  }
+  createNote = async note => {
+    const notes = [note, ...this.state.notes]
+    const newNotes = this.state.notes
+    this.setState({ notes })
+    try {
+      const data = await API.graphql(graphqlOperation(createNote, { input: note }))
+      this.setState({ notes: [data.data.createNote, ...newNotes] })
+    } catch (err) {
+      console.log('error creating note..', err)
+    }
+  }
+  updateNote = async note => {
+    const updatedNote = {
+      ...note,
+      status: note.status === 'new' ? 'completed' : 'new'
+    }
+    const index = this.state.notes.findIndex(i => i.id === note.id)
+    const notes = [...this.state.notes]
+    notes[index] = updatedNote
+    this.setState({ notes })
+
+    try {
+      await API.graphql(graphqlOperation(updateNote, { input: updatedNote }))
+    } catch (err) {
+      console.log('error updating note...', err)
+    }
+  }
+  deleteNote = async note => {
+    const input = { id: note.id }
+    const notes = this.state.notes.filter(n => n.id !== note.id)
+    this.setState({ notes })
+    try {
+      await API.graphql(graphqlOperation(deleteNote, { input }))
+    } catch (err) {
+      console.log('error deleting note...', err)
+    }
+  }
+  updateFilter = filter => this.setState({ filter })
+  ```
