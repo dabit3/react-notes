@@ -1,0 +1,20 @@
+{
+    "appName": "reactnotes",
+    "roleName": "pinpointLambdaRoleda8c3f26",
+    "cloudWatchPolicyName": "cloudWatchPolicyda8c3f26",
+    "pinpointPolicyName": "pinpointPolicyda8c3f26",
+    "authPolicyName": "pinpoint_amplify_da8c3f26",
+    "unauthPolicyName": "pinpoint_amplify_da8c3f26",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

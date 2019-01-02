@@ -1,6 +1,6 @@
 {
     "identityPoolName": "react_notes_id_pool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "thirdPartyAuth": false,
     "lambdaLogPolicy": "reactnotescognitoauth_lambda_log_policy",
     "openIdLambdaRoleName": "reactnotescognitoauth_openid_lambda_role",

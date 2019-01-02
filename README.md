@@ -128,7 +128,7 @@ Let’s add our first backend feature to our app, Analytics. Adding Analytics wo
 
 While enabling Analytics, you will also learn how to use Amplify CLI and configure your app to work with various backend services.
 
-### How Amplify CLI works?
+### How the Amplify CLI works?
 
 When you deploy your backend with Amplify CLI, here is what happens under the hood:
 
@@ -145,4 +145,39 @@ $ amplify add analytics
 $ amplify push
 ```
 
-After successfully executing the push command, the CLI creates your configuration file aws-exports.js in your ‘/src’ folder.
+After successfully executing the push command, the CLI updates your configuration file _aws-exports.js_ in your ‘/src’ folder with the references to the newly created resources.
+
+## Working with The Configuration File
+
+The next step is to import _aws-exports.js_ configuration file into your app.
+
+To configure your app, open __src/App.js__ file and make the following changes in code:
+
+```js
+import Amplify, { Analytics } from 'aws-amplify';
+import aws_exports from './aws-exports';
+
+Amplify.configure(aws_exports);
+```
+
+### Monitoring App Analytics
+
+Refresh your application a couple of times, and then you will start receiving usage metrics in Amazon Pinpoint console.
+
+Since your application doesn’t have much functionality at the moment, only ‘session start’ events are displayed in Pinpoint Console. As you add more cloud features to your app - like authentication - Amplify will automatically report related analytics events to Amazon Pinpoint. So, you will know how your users are interacting with your app.
+
+### Adding Authentication
+
+Now that you know how to utilize Amplify CLI to enable backend services, you can continue to add new features to your React app easily.
+
+User authentication will be the next cloud feature you will enable.
+
+If you have been following the tutorial from the start and enabled Analytics in the previous step, auth is already enabled for your app (analytics needs secure credentials for reporting metrics). In this case, you just need to run update auth command to create a User Pool that will store your registered users:
+
+```sh
+amplify update auth
+
+> Do you want to use the default authentication and security configuration? Y
+
+$ amplify push
+```

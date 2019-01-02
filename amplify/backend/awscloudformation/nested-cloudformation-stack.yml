@@ -84,7 +84,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/react-notes-20181228114606-deployment/amplify-cfn-templates/auth/reactnotescognitoauth-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "react_notes_id_pool",
-					"allowUnauthenticatedIdentities": false,
+					"allowUnauthenticatedIdentities": true,
 					"thirdPartyAuth": false,
 					"lambdaLogPolicy": "reactnotescognitoauth_lambda_log_policy",
 					"openIdLambdaRoleName": "reactnotescognitoauth_openid_lambda_role",
@@ -155,10 +155,37 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://react-notes-20181228114606-deployment/amplify-appsync-files/schema.graphql.1546292225283",
+					"schemaGraphql": "s3://react-notes-20181228114606-deployment/amplify-appsync-files/schema.graphql.1546457354441",
 					"ResolverBucket": "react-notes-20181228114606-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1546292225283",
+					"DeploymentTimestamp": "1546457354441",
+					"env": "dev"
+				}
+			}
+		},
+		"analyticsreactnotes": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/react-notes-20181228114606-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"Parameters": {
+					"appName": "reactnotes",
+					"roleName": "pinpointLambdaRoleda8c3f26",
+					"cloudWatchPolicyName": "cloudWatchPolicyda8c3f26",
+					"pinpointPolicyName": "pinpointPolicyda8c3f26",
+					"authPolicyName": "pinpoint_amplify_da8c3f26",
+					"unauthPolicyName": "pinpoint_amplify_da8c3f26",
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
 					"env": "dev"
 				}
 			}
