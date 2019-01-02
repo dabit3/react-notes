@@ -733,7 +733,7 @@ Let’s see what is happening under the hood. Run your app, and add a new item w
 
 ![](preview.png)
 
-When you check the request header, you will notice that the Request Payload has the todo item data in JSON format.
+When you check the request header, you will notice that the Request Payload has the note item data in JSON format.
 
 __Congratulations! You now have a cloud-powered React app!__
 
@@ -749,11 +749,11 @@ The AWS Amplify Console is a continuous deployment and hosting service for mobil
 
 #### Work with User Data
 
-You may have noticed that our Todo GraphQL schema doesn’t have a user id field. It means that the todo list is not personalized for your app users. To fix that, you can retrieve the user id after login, and use it when you work with data. When a user is logged in, you may also like to use the user profile information in your app, like displaying the username or profile picture. Learn more about User Attributes here.
+You may have noticed that our Note GraphQL schema doesn’t have a user id field. It means that the notes list is not personalized for your app users. To fix that, you can retrieve the user id after login, and use it when you work with data. When a user is logged in, you may also like to use the user profile information in your app, like displaying the username or profile picture. Learn more about User Attributes here.
 
 #### Use GraphQL Subscriptions
 
-In addition to queries and mutations, you can use GraphQL subscriptions with AWS AppSync and enable real-time data in your app. Think of a user experience which you share your todo list with your friends and all of you create and edit items at the same time. Learn more about subscriptions here.
+In addition to queries and mutations, you can use GraphQL subscriptions with AWS AppSync and enable real-time data in your app. Think of a user experience which you share your notes with your friends and all of you create and edit items at the same time. Learn more about subscriptions here.
 
 #### Add Search
 
@@ -761,4 +761,4 @@ You can add search functionality to your app. This will be very easy by adding a
 
 #### Add Images
 
-You can add an image attachment feature for todo items. This can be simply done by enabling complex object types in your GraphQL schema. Learn more about here.
+You can add an image attachment feature for notes. This can be simply done by enabling complex object types in your GraphQL schema. Learn more about here.
