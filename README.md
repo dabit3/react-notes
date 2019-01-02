@@ -488,3 +488,234 @@ render() {
 - Next, we apply the filter on the notes array if there is a filter that matches either `completed` or `new`.
 - We return the __Form__ & __Notes__ components as well as some UI to apply the filter.
 
+Finally, we have a few styles that we create to style our UI:
+
+```js
+const styles = {
+  container: {
+    width: 360,
+    margin: '0 auto',
+    borderBottom: '1px solid #ededed',
+  },
+  form: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  input: {
+    height: 35,
+    width: '360px',
+    border: 'none',
+    outline: 'none',
+    marginLeft: 10,
+    fontSize: 20,
+    padding: 8,
+  }
+}
+```
+
+Now, let's take a look at __components/Note.js__:
+
+```js
+// src/components/Note.js
+
+import React from 'react'
+import { css } from 'glamor'
+import { FaTimes, FaCircle } from 'react-icons/fa'
+import { MdCheckCircle } from 'react-icons/md';
+
+class Note extends React.Component {
+  render() {
+    const { name, status } = this.props.note
+    return (
+      <div {...css(styles.container)}>
+        {
+          status === 'new' && (
+            <FaCircle
+              color='#FF9900'
+              {...css(styles.new)}
+              size={22}
+              onClick={() => this.props.updateNote(this.props.note)}
+            />
+          )
+        }
+        {
+          status === 'completed' && (
+            <MdCheckCircle
+              {...css(styles.completed)}
+              size={22}
+              color='#FF9900'
+              onClick={() => this.props.updateNote(this.props.note)}
+            />
+          )
+        }
+        <p {...css(styles.name)}>{name}</p>
+        <div {...css(styles.iconContainer)}>
+          <FaTimes
+            onClick={() => this.props.deleteNote(this.props.note)}
+            color='red'
+            size={22}
+            {...css(styles.times)}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+
+const styles = {
+  container: {
+    borderBottom: '1px solid rgba(0, 0, 0, .15)',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  name: {
+    textAlign: 'left',
+    fontSize: 18
+  },
+  iconContainer: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  new: {
+    marginRight: 10,
+    cursor: 'pointer',
+    opacity: .3
+  },
+  completed: {
+    marginRight: 10,
+    cursor: 'pointer'
+  },
+  times: {
+    cursor: 'pointer',
+    opacity: 0.7
+  }
+}
+
+export default Note
+```
+
+This component is pretty basic: we return the note `name` as well as some UI for updating & deleting the note.
+
+If the note is `new`, we show an empty circle next to the note.
+
+If the note is `completed`, we show a circle with a checkmark next to it. If the circle is clicked, we call the `updateNote` method passed down as props & toggle the `completed` state..
+
+We also have a red __x__ that deletes the note when clicked by calling the `deleteNote` method passed down as props.
+
+Next, let's take a look at Notes.js:
+
+```js
+// src/components/Notes.js
+
+import React from 'react'
+import { css } from 'glamor'
+
+import Note from './Note'
+
+class Notes extends React.Component {
+  render() {
+    return (
+      <div {...css(styles.container)}>
+        {
+          this.props.notes.map((t, i) => (
+          <Note
+            key={i}
+            note={t}
+            deleteNote={this.props.deleteNote}
+            updateNote={this.props.updateNote}
+          />
+          ))
+        }
+      </div>
+    )
+  }
+}
+
+const styles = {
+  container: {
+    width: '360px',
+    margin: '0 auto',
+    '@media(max-width: 360px)': {
+      width: 'calc(100% - 40px)'
+    }
+  }
+}
+
+export default Notes
+```
+
+This component is fairly simple. We map over all of the notes (passed in as `this.props.notes`), & render a __Note__ component for each item in the array.
+
+We pass in the `deleteNote` & `updateNote` methods as props to each __Note__ component.
+
+Finally, let's take a look at the Form component:
+
+```js
+// src/components/Form.js
+
+import React from 'react'
+import { css } from 'glamor'
+import { MdAdd } from 'react-icons/md'
+
+class Form extends React.Component {
+  state = { name: '' }
+  onChange = e => {
+    this.setState({ name: e.target.value })
+  }
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter' && this.state.name !== '') {
+      const note = {
+        ...this.state, status: 'new'
+      }
+      this.props.createNote(note)
+      this.setState({ name: '' })
+    }
+  }
+  render() {
+    return (
+      <div {...css(styles.container)}>
+        <div {...css(styles.form)}>
+          <MdAdd size={28} />
+          <input
+            placeholder='Note Name'
+            {...css(styles.input)}
+            onKeyPress={this.handleKeyPress}
+            onChange={e => this.onChange(e)}
+            value={this.state.name}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+
+const styles = {
+  container: {
+    width: 360,
+    margin: '0 auto',
+    borderBottom: '1px solid #ededed',
+  },
+  form: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  input: {
+    height: 35,
+    width: '360px',
+    border: 'none',
+    outline: 'none',
+    marginLeft: 10,
+    fontSize: 20,
+    padding: 8,
+  }
+}
+
+export default Form
+```
+
+This component renders a basic form. In the component we listen for an __enter__ keyPress event. If the key is the __Enter__ key, we call this.props.createNote, passing in the value in the text input.
+
