@@ -234,7 +234,7 @@ So far, your app is powered by Amazon Cognito User Pools, but we do not yet have
 
 ### What is GraphQL?
 
-GraphQL is a modern way of building APIs for your apps and interacting with your backend. It has many benefits over REST – such as using a single endpoint, powerful query syntax, data aggregation from multiple sources and a type system to describe the data –but the overall goal is to make your front-end development experience easy and more productive.
+GraphQL is a modern way of building APIs for your apps and interacting with your backend. It has many benefits over REST – such as using a single endpoint, powerful query syntax, data aggregation from multiple sources and a type system to describe the data – but the overall goal is to make your front-end development experience easy and more productive.
 
 The Amplify CLI will also help you when creating the GraphQL backend.
 
@@ -260,6 +260,7 @@ When you select GraphQL as the service type, the CLI offers you options to creat
 
 Select Single object with fields when prompted What best describes your project?. This option will create a GraphQL backend data model which we can modify and use in our app:
 
+```sh
 ? Provide API name: reactnotes
 ? Choose an authorization type for the API Amazon Cognito User Pool
 Use a Cognito user pool configured as a part of this project
@@ -268,6 +269,7 @@ Use a Cognito user pool configured as a part of this project
 ? What best describes your project:
 ? What best describes your project: Single object with fields (e.g., “Todo” with ID, name, description)
 ? Do you want to edit the schema now? Yes
+```
 
 This should open a GraphQL schema in your text editor (located at amplify/backend/api/reactnotes/schema.graphql).
 
