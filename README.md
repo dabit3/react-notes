@@ -24,9 +24,9 @@ You can directly copy and paste code snippets from the tutorial as you are follo
 ## Content
 Here is the sequence of the tutorial:
 
-Part 1: Creating the React App   
-Part 2: Adding Cloud Features   
-Part 3: Enabling GraphQL Backend
+[Part 1: Creating the React App](https://github.com/dabit3/react-notes#part-1-create-a-react-app)   
+[Part 2: Adding Cloud Features](https://github.com/dabit3/react-notes#part-2-adding-cloud-features)   
+[Part 3: Enabling GraphQL Backend](https://github.com/dabit3/react-notes#part-3-enabling-graphql-backend)
 
 # Part 1: Create a React App
 
@@ -595,7 +595,7 @@ Now, refresh your app. Once your application loads, you will see login/signup co
 
 When a new user registers through the `withAuthenticator` component, the user data is stored in your Cognito User Pool. A user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your app through Amazon Cognito. You can visit [Amazon Cognito console](https://console.aws.amazon.com/cognito/home), and see the list of registered users by selecting the User Pool that is created for your app.
 
-## Part 3: Enabling GraphQL Backend
+# Part 3: Enabling GraphQL Backend
 
 So far, your app is powered by Amazon Cognito User Pools, but we do not yet have any real yet as far as storing data. In this part, you will integrate your app with a GraphQL API (powered by AWS AppSync) that will store your notes in a NoSQL database (Amazon DynamoDB).
 
