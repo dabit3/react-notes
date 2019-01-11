@@ -456,8 +456,11 @@ To install and configure the Amplify CLI, run the following commands:
 
 ```sh
 $ npm install -g @aws-amplify/cli
+
 $ npm amplify configure
 ```
+
+> For a video walkthrough of how to configure the Amplify CLI, check out [this](https://www.youtube.com/watch?v=fWbM5DLh25U) video.
 
 ### Amplify CLI vs. AWS Console
 
