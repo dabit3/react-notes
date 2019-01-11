@@ -489,7 +489,7 @@ The CLI guides you through the options for your project. Select `React` as your 
     none
 ```
 
-When the CLI successfully configures your backend, the backend configuration files are saved to ‘/amplify’ folder. You don’t need to manually edit the content of this folder as it is maintained by the CLI.
+When the CLI successfully configures your backend, the backend configuration files are saved to `/amplify` folder. You don’t need to manually edit the content of this folder as it is maintained by the CLI.
 
 ### Adding Analytics
 
@@ -579,7 +579,7 @@ Now, let’s put the auth UI components in our home page. We'll be using the `wi
 
 The `withAuthenticator` component renders a pre-built sign-in and sign-up flow with full-fledged auth functionality like user registration, password reminders, and Multi-factor Authentication.
 
-Open src/App.js and import the component & replace the default export for the component:
+Open __src/App.js__. Import the `withAuthenticator` component & replace the default export for the component:
 
 ```js
 import { withAuthenticator } from 'aws-amplify-react'
@@ -698,6 +698,8 @@ import { listNotes } from './graphql/queries';
 const allNotes = await API.graphql(graphqlOperation(listNotes));
 console.log(allNotes);
 ```
+
+Let's take a look at how to do this in our app.
 
 ## Connecting to the GraphQL Backend & Updating Your App
 
