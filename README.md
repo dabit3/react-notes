@@ -32,7 +32,7 @@ Here is the sequence of the tutorial:
 
 This section introduces React basics. You will learn how to bootstrap a new React app with the Create React App CLI. In subsequent parts of the tutorial, you will gradually add new cloud functionality to your application.
 
-> If you want to integrate Amplify Framework into an existing React application, you can skip Part 1 and start directly to Part 2. Also, follow the directions that are labeled as Existing App to integrate a cloud feature into your app.
+> If you want to integrate Amplify Framework into an existing React application, you can skip Part 1 and start directly to Part 2.
 
 ### Install the Create React App CLI and Create a New Project
 The easiest way to create an React application is with the Create React App Command Line Interface (CLI). To install the CLI, run the following command in your terminal:
@@ -80,7 +80,7 @@ In this section, we'll create the components that we will use in our React app. 
 
 ![](notesapp.jpg)
 
-The first thing we'll need to do is install a couple of additional dependencies (Glamor for styling & React Icons for Icons):
+The next thing we'll need to do is install a couple of additional dependencies (Glamor for styling & React Icons for Icons):
 
 ```sh
 npm install react-icons glamor
@@ -102,7 +102,6 @@ First, let's import everything we'll need for the component:
 ```js
 // src/App.js
 
-import React, { Component } from 'react'
 import { css } from 'glamor'
 
 import Form from './components/Form'
@@ -115,8 +114,8 @@ Next, in our class, we'll define the initial state:
 state = { notes: [], filter: 'none' }
 ```
 
-- The `notes` array will hold the notes we will be fetching from the API.
-- The `filter` value will hold the current filter for the type notes that we are viewing (all notes, completed notes, pending notes).
+- The `notes` array will hold the notes we will be rendering in our app.
+- The `filter` value will hold the current filter for the type notes that we are viewing (all notes, completed notes, or pending notes).
 
 Next, we'll define the methods we'll be needing:
 
@@ -226,7 +225,7 @@ const styles = {
 }
 ```
 
-Now, let's take a look at __components/Note.js__:
+Now, let's take a look at the __Note__ component (components/Note.js):
 
 ```js
 // src/components/Note.js
@@ -317,7 +316,7 @@ If the note is `completed`, we show a circle with a checkmark next to it. If the
 
 We also have a red __x__ that deletes the note when clicked by calling the `deleteNote` method passed down as props.
 
-Next, let's take a look at Notes.js:
+Next, let's take a look at __Notes__ component (Notes.js):
 
 ```js
 // src/components/Notes.js
@@ -359,11 +358,11 @@ const styles = {
 export default Notes
 ```
 
-This component is fairly simple. We map over all of the notes (passed in as `this.props.notes`), & render a __Note__ component for each item in the array.
+In this component, we map over all of the notes (passed in as `this.props.notes`), & render a __Note__ component for each item in the array.
 
-We pass in the `deleteNote` & `updateNote` methods as props to each __Note__ component.
+We pass in the `deleteNote` & `updateNote` methods as props to each __Note__ component along with the note.
 
-Finally, let's take a look at the Form component:
+Finally, let's take a look at the __Form__ component (components/Form.js):
 
 ```js
 // src/components/Form.js
@@ -429,7 +428,7 @@ const styles = {
 export default Form
 ```
 
-This component renders a basic form. In the component we listen for an __enter__ keyPress event. If the key is the __Enter__ key, we call this.props.createNote, passing in the value in the text input.
+This component renders a basic form. In the component we listen for an __enter__ `keyPress` event. If the key is the __Enter__ key, we call `this.props.createNote`, passing in the value in the text input.
 
 ## Testing Your Components
 
