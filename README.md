@@ -16,7 +16,7 @@ The Amplify Framework enables frontend developers to build apps quickly with a s
 - Create and use a GraphQL backend to store data
 
 ### Prerequisites
-You need to have a basic understanding of JavaScript/TypeScript, Node.js, and NPM to complete this tutorial.
+You need to have a basic understanding of JavaScript, Node.js, and NPM to complete this tutorial.
 
 ### Source Code
 You can directly copy and paste code snippets from the tutorial as you are following the steps. Alternatively, if you would like to get right to the source code for the final version of the tutorial’s code, please visit the Github Repo.
@@ -24,8 +24,8 @@ You can directly copy and paste code snippets from the tutorial as you are follo
 ## Content
 Here is the sequence of the tutorial:
 
-Part 1: Creating the React App
-Part 2: Adding Cloud Features
+Part 1: Creating the React App   
+Part 2: Adding Cloud Features   
 Part 3: Enabling GraphQL Backend
 
 # Part 1: Create a React App
