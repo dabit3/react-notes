@@ -46,7 +46,7 @@ $ npm install -g create-react-app
 After the installation, go to a location where you wish to start your new application project and execute the following command to create a new React app:
 
 ```sh
-$ create-react-app amplify-notes
+$ create-react-app react-notes
 ```
 
 ### Install Amplify Framework Libraries
