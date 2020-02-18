@@ -831,7 +831,7 @@ In addition to queries and mutations, you can use GraphQL subscriptions with AWS
 
 #### Add Search
 
-You can add search functionality to your app. This will be very easy by adding a @searchable directive in your GraphQL schema. Learn more about here.
+You can add search functionality to your app. This will be very easy by adding a @searchable directive in your GraphQL schema. [Learn more about here](https://aws-amplify.github.io/docs/cli-toolchain/graphql#searchable).
 
 #### Add Images
 
