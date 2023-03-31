@@ -204,6 +204,13 @@ render() {
 Finally, we have a few styles that we create to style our UI:
 
 ```js
+function getStyle(type, filter) {
+  if (type === filter) {
+    return {
+      fontWeight: 'bold'
+    }
+  }
+}
 const styles = {
   container: {
     width: 360,
